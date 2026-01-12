@@ -1,0 +1,35 @@
+# MEA Neural Metrics Configuration
+# This file categorizes parameters by their data type for proper handling of missing values
+
+metrics:
+
+  # COUNT METRICS: Missing values = 0
+  # These represent counts/numbers of events
+  count_metrics:
+    - "Number of Active Electrodes"
+    - "Number of Bursts"
+    - "Number of Network Bursts"
+  
+  # RATE METRICS: Missing values = 0
+  # These represent frequencies/rates of activity
+  rate_metrics:
+    - "Weighted Mean Firing Rate (Hz)"
+    - "Burst Frequency - Avg (Hz)"
+    - "Network Burst Frequency"
+  
+  # INTERVAL/DURATION METRICS: Missing values = NaN
+  # These represent time measurements (only exist when events occur)
+  interval_duration_metrics:
+    - "Burst Duration - Avg (sec)"
+    - "Network Burst Duration - Avg (sec)"
+    - "Network IBI Coefficient of Variation"
+  
+  # DERIVED METRICS: Missing values = NaN
+  # These are calculated metrics that may not exist without activity
+  derived_metrics:
+    - "Synchrony Index"
+
+# Notes on missing values:
+# - Count/Rate metrics: 0 means "no events detected" which is valid data
+# - Interval/Duration metrics: NaN means "cannot calculate" (no events to measure)
+# - Derived metrics: NaN means "insufficient data to calculate"
