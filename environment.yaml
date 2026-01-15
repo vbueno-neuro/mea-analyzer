@@ -1,0 +1,12 @@
+name: mea
+channels:
+  - defaults
+dependencies:
+  - python=3.11
+  - pandas
+  - numpy
+  - seaborn
+  - jupyterlab
+  - matplotlib
+  - scipy
+prefix: C:\Users\Vitor Bueno\miniconda3\envs\mea

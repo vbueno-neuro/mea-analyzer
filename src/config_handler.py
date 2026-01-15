@@ -5,6 +5,7 @@ Reads and manages YAML configuration files
 
 import yaml
 import os
+import numpy as np
 from pathlib import Path
 
 
@@ -110,7 +111,6 @@ class ConfigHandler:
         --------
         Value to use for missing data (0 or NaN)
         """
-        import numpy as np
         
         metric_type = self.get_metric_type(metric_name)
         

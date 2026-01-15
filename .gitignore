@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Conda
+.env
+.venv
+env/
+venv/
+
+# Raw data
+data/raw/*
+!data/raw/.gitkeep
+
+# Processed data
+data/processed/*
+!data/processed/.gitkeep
+
+# Outputs
+outputs/*
+!outputs/.gitkeep
+
+# Figures
+figures/*
+!figures/.gitkeep
