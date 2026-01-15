@@ -1,0 +1,198 @@
+🧠 MEA Analyzer – Axion MEA Data Processing Pipeline
+
+A reproducible Python pipeline for cleaning, organizing, visualizing, normalizing, and statistically analyzing multi-electrode array (MEA) data generated with Axion Biosystems 24-well plates.
+
+Designed for neuroscientists and biologists with minimal programming experience. Allows an intuitive experience with straight forwarded but robust data analysis and plotting.
+
+📌 Project goals
+
+This project provides tools to:
+
+- Read Axion MEA Neural Metrics CSV files
+
+- Clean and organize data across multiple time points
+
+- Handle missing values correctly depending on metric type
+
+- Assign wells to experimental conditions 
+
+- Perform quality control & outlier detection 
+
+- Apply baseline normalization
+
+- Run time-point–based statistics 
+
+- Export publication-ready tables and figures
+
+- Export Prism-friendly CSVs for external analysis
+
+📁 Project structure
+## 📁 Project structure
+
+```text
+mea_project/
+│
+├── config/                 # Experiment & metrics configuration
+│   ├── metrics_config.yaml
+│   └── Plate_*.yaml
+│
+├── data/
+│   ├── raw/                # Raw Axion CSVs (not tracked)
+│   └── processed/          # Cleaned wide tables (exported)
+│
+├── notebooks/
+│   └── mea_analyzer_v1.ipynb   # Main analysis notebook
+│
+├── outputs/                # Long-format tables, statistics
+├── figures/                # Saved figures
+│
+├── src/
+│   ├── data_loader.py
+│   ├── data_organizer.py
+│   ├── config_handler.py
+│   │
+│   ├── qc/
+│   │   └── outliers.py
+│   │
+│   ├── analysis/
+│   │   └── normalization.py
+│   │
+│   ├── statistics/
+│   │   └── timepoint_tests.py
+│   │
+│   ├── visualization/
+│   │   ├── plot_plate_layout.py
+│   │   └── timecourse.py
+│   │
+│   └── io/
+│       └── table_export.py
+│
+├── environment.yaml        # Conda environment specification
+├── .gitignore
+└── README.md
+```
+
+⚙️ Environment setup
+
+1️⃣ Create the conda environment (Anconda Prompt).
+    
+  conda env create -f environment.yaml
+  conda activate mea
+
+2️⃣ Open jupyter lab inside the project's root.
+
+📊 Supported metrics
+
+The pipeline currently supports the following Axion metrics:
+
+- Number of Active Electrodes
+- Number of Bursts
+- Number of Network Bursts
+- Weighted Mean Firing Rate (Hz)
+- Burst Frequency - Avg (Hz)
+- Network Burst Frequency
+- Burst Duration - Avg (sec)
+- Network Burst Duration - Avg (sec)
+- Network IBI Coefficient of Variation
+- Synchrony Index
+
+Metric behavior (missing values, normalization rules) is defined in
+config/metrics_config.yaml.
+
+🧪 Experimental design assumptions
+
+- Experimental unit = MEA plate
+
+- Wells are technical replicates, not independent biological replicates
+
+- Baseline is the first recording (file name starting with 0_)
+
+- Wells with missing or zero baseline are excluded from normalization
+
+- Outliers are detected within condition × time point × metric
+
+📓 Main workflow (Notebook)
+
+- All analysis is performed in:
+
+- notebooks/mea_analyzer_v1.ipynb
+
+- The notebook guides you through:
+
+- Project setup & root detection
+
+- Loading experiment configuration
+
+- Plate layout visualization
+
+- Data loading & master table construction
+
+- Raw data visualization
+
+- Outlier detection & QC
+
+- Baseline normalization
+
+- Time-point–based statistics
+
+- Export of tables and figures
+
+👉 Users do not need to modify source code — only the notebook and config files.
+
+🧾 Exported outputs
+
+- Tables
+
+- Long-format master tables (outputs/)
+
+- Wide, Prism-ready tables (data/processed/)
+
+- Statistics tables (descriptives, omnibus, pairwise)
+
+- Figures
+
+- Raw time courses
+
+- Normalized time courses
+
+- Plate layout visualization
+
+📤 Export of cleaned tables for GraphPad Prism
+
+- One CSV per metric
+
+- Rows = time points
+
+- Columns = wells
+
+- Raw and/or baseline-normalized values
+
+- This allows direct import into Prism for further statistical analysis.
+
+🛑 What is NOT included
+
+- Spike-level data analysis
+
+- Electrode-level spatial statistics
+
+- Cross-plate mixed-effects modeling
+
+- These are intentionally out of scope for the moment.
+
+🧠 Scientific notes
+
+- Outlier detection is descriptive/QC-oriented, not inferential
+
+- Statistics are time-point–specific, avoiding invalid repeated-measures assumptions
+
+- Normalization is optional and transparent
+
+- All exclusions are explicitly tracked
+
+📜 License & authorship
+
+This was developed as a project for the "Scientific Programming" course lectured by Dr. Renato Duarte (CNC - University of Coimbra), who I acknowledge here.
+
+For academic research use.
+
+Author: Vitor Bueno, ChatGPT, Claude.
