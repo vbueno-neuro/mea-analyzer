@@ -1,10 +1,10 @@
-🧠 MEA Analyzer – Axion MEA Data Processing Pipeline
+# 🧠 MEA Analyzer – Axion MEA Data Processing Pipeline
 
 A reproducible Python pipeline for cleaning, organizing, visualizing, normalizing, and statistically analyzing multi-electrode array (MEA) data generated with Axion Biosystems 24-well plates.
 
 Designed for neuroscientists and biologists with minimal programming experience. Allows an intuitive experience with straight forwarded but robust data analysis and plotting.
 
-📌 Project goals
+## 📌 Project goals
 
 This project provides tools to:
 
@@ -26,62 +26,64 @@ This project provides tools to:
 
 - Export Prism-friendly CSVs for external analysis
 
-📁 Project structure
 ## 📁 Project structure
-
 ```text
 mea_project/
 │
-├── config/                 # Experiment & metrics configuration
-│   ├── metrics_config.yaml
-│   └── Plate_*.yaml
+├── config/                         # Experiment & metrics configuration
+│   ├── metrics_config.yaml         # Metric categories, types, missing-value rules
+│   └── Plate_*.yaml                # Plate layout & condition assignment (user-defined)
 │
 ├── data/
-│   ├── raw/                # Raw Axion CSVs (not tracked)
-│   └── processed/          # Cleaned wide tables (exported)
+│   ├── raw/                        # Raw Axion CSVs (NOT tracked by git)
+│   └── processed/                  # Optional exported / intermediate tables
 │
 ├── notebooks/
-│   └── mea_analyzer_v1.ipynb   # Main analysis notebook
+│   └── mea_analyzer_v1.ipynb       # Main analysis notebook (entry point)
 │
-├── outputs/                # Long-format tables, statistics
-├── figures/                # Saved figures
+├── outputs/                        # Exported tables (stats, long-format data)
+├── figures/                        # Saved figures (timecourses, layouts)
 │
-├── src/
-│   ├── data_loader.py
-│   ├── data_organizer.py
-│   ├── config_handler.py
+├── src/                            # Core analysis library
+│   ├── data_loader.py              # Axion CSV parsing (Well Averages block)
+│   ├── data_organizer.py           # Master dataframe creation & cleaning
+│   ├── config_handler.py           # Metrics configuration logic
+│   │
+│   ├── utilities/                  # User-facing helper scripts
+│   │   └── create_plate_config.py  # Interactive helper to generate Plate_*.yaml
 │   │
 │   ├── qc/
-│   │   └── outliers.py
+│   │   └── outliers.py             # Outlier detection & flagging
 │   │
 │   ├── analysis/
-│   │   └── normalization.py
+│   │   └── normalization.py        # Baseline normalization logic
 │   │
 │   ├── statistics/
-│   │   └── timepoint_tests.py
+│   │   └── timepoint_tests.py      # Condition comparisons at single time points
 │   │
 │   ├── visualization/
-│   │   ├── plot_plate_layout.py
-│   │   └── timecourse.py
+│   │   ├── plot_plate_layout.py    # Plate layout visualization
+│   │   └── timecourse.py           # Metric time-course plotting utilities
 │   │
 │   └── io/
-│       └── table_export.py
+│       └── table_export.py         # Export to Prism / CSV formats
 │
-├── environment.yaml        # Conda environment specification
-├── .gitignore
-└── README.md
+├── environment.yaml                # Conda environment specification
+├── .gitignore                      # Excludes raw data, outputs, figures
+└── README.md                       # Project overview & usage
 ```
 
-⚙️ Environment setup
+## ⚙️ Environment setup
 
-1️⃣ Create the conda environment (Anconda Prompt).
-    
+1. Create the conda environment (Anconda Prompt).
+  ```  
   conda env create -f environment.yaml
   conda activate mea
+  ```
 
-2️⃣ Open jupyter lab inside the project's root.
+2. Open jupyter lab from the project root directory
 
-📊 Supported metrics
+## 📊 Supported metrics
 
 The pipeline currently supports the following Axion metrics:
 
@@ -99,7 +101,7 @@ The pipeline currently supports the following Axion metrics:
 Metric behavior (missing values, normalization rules) is defined in
 config/metrics_config.yaml.
 
-🧪 Experimental design assumptions
+## 🧪 Experimental design assumptions
 
 - Experimental unit = MEA plate
 
@@ -111,7 +113,7 @@ config/metrics_config.yaml.
 
 - Outliers are detected within condition × time point × metric
 
-📓 Main workflow (Notebook)
+## 📓 Main workflow (Notebook)
 
 - All analysis is performed in:
 
@@ -137,9 +139,9 @@ config/metrics_config.yaml.
 
 - Export of tables and figures
 
-👉 Users do not need to modify source code — only the notebook and config files.
+### 👉 Users do not need to modify source code — only the notebook and config files.
 
-🧾 Exported outputs
+## 🧾 Exported outputs
 
 - Tables
 
@@ -157,7 +159,7 @@ config/metrics_config.yaml.
 
 - Plate layout visualization
 
-📤 Export of cleaned tables for GraphPad Prism
+## 📤 Export of cleaned tables for GraphPad Prism
 
 - One CSV per metric
 
@@ -169,7 +171,7 @@ config/metrics_config.yaml.
 
 - This allows direct import into Prism for further statistical analysis.
 
-🛑 What is NOT included
+## 🛑 What is NOT included
 
 - Spike-level data analysis
 
@@ -179,7 +181,7 @@ config/metrics_config.yaml.
 
 - These are intentionally out of scope for the moment.
 
-🧠 Scientific notes
+## 🧠 Scientific notes
 
 - Outlier detection is descriptive/QC-oriented, not inferential
 
@@ -189,10 +191,16 @@ config/metrics_config.yaml.
 
 - All exclusions are explicitly tracked
 
-📜 License & authorship
+## 📚 Documentation
 
-This was developed as a project for the "Scientific Programming" course lectured by Dr. Renato Duarte (CNC - University of Coimbra), who I acknowledge here.
+- Non-programmers-friendly instructions for lab members: [Quickstart guide for lab users](docs/quickstart.md)
 
-For academic research use.
+## 📜 License & authorship
 
-Author: Vitor Bueno, ChatGPT, Claude.
+This was developed as a project for the "Scientific Programming" course lectured by Dr. Renato Duarte (CNC - University of Coimbra)
+
+For academic research use
+
+Author: Vitor Bueno
+
+Contributions: ChatGPT, Claude
