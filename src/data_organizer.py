@@ -152,6 +152,61 @@ class DataOrganizer:
         print("=" * 60 + "\n")
 
         return csv_files
+    
+    # -------------------------
+    # Missing-value handling
+    # -------------------------
+    def apply_metric_missing_value_rules(self, df: pd.DataFrame, verbose: bool = True) -> pd.DataFrame:
+        """Apply metric-type-specific missing-value rules.
+
+        Rules (from metrics_config.yaml via ConfigHandler):
+          - count + rate metrics: missing values mean "no detected events" -> fill with 0
+          - interval/duration + derived metrics: missing values are "undefined" -> keep as NaN
+
+        Notes
+        -----
+        - This function only changes rows where df['value'] is NaN.
+        - It requires self.config_handler to be set; otherwise it returns df unchanged.
+        """
+        if self.config_handler is None:
+            return df
+
+        if "metric" not in df.columns or "value" not in df.columns:
+            raise ValueError("DataFrame must contain 'metric' and 'value' columns")
+
+        out = df.copy()
+
+        # Ensure numeric values (non-numeric become NaN)
+        out["value"] = pd.to_numeric(out["value"], errors="coerce")
+
+        # Ensure metric_type exists
+        if "metric_type" not in out.columns:
+            out["metric_type"] = out["metric"].apply(self.config_handler.get_metric_type)
+
+        missing_mask = out["value"].isna()
+        fill_zero_mask = missing_mask & out["metric_type"].isin(["count", "rate"])
+
+        n_filled = int(fill_zero_mask.sum())
+
+        if n_filled > 0:
+            out.loc[fill_zero_mask, "value"] = 0
+
+        if verbose:
+            n_missing_after = int(out["value"].isna().sum())
+            print(
+                f"✓ Missing-value rules applied: filled {n_filled} NaNs with 0 "
+                f"(count/rate metrics). Remaining NaNs: {n_missing_after} (duration/derived/unknown)."
+            )
+
+            # If any count/rate metrics are still NaN, they are probably not listed in metrics_config.yaml.
+            remaining_count_rate = int((out["value"].isna() & out["metric_type"].isin(["count", "rate"])).sum())
+            if remaining_count_rate > 0:
+                print(
+                    "⚠ Warning: Some count/rate rows are still NaN after filling. "
+                    "This usually means those metrics are not listed in metrics_config.yaml."
+                )
+
+        return out
 
     # -------------------------
     # Master dataframe
@@ -225,6 +280,9 @@ class DataOrganizer:
             raise ValueError("No data was successfully loaded.")
 
         master_df = pd.concat(all_data, ignore_index=True)
+        
+        # Apply missing-value rules centrally (count/rate -> 0, duration/derived -> NaN)
+        master_df = self.apply_metric_missing_value_rules(master_df, verbose=verbose)
 
         # Reorder columns (stable schema for downstream)
         cols = [

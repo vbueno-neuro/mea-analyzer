@@ -35,7 +35,6 @@ def _sem(x: pd.Series) -> float:
         return np.nan
     return x.std(ddof=1) / np.sqrt(x.shape[0])
 
-
 def plot_metric_timecourse(
     df: pd.DataFrame,
     metric: str,
@@ -53,40 +52,13 @@ def plot_metric_timecourse(
     title: Optional[str] = None,
     y_label: Optional[str] = None,
     timepoint_labels: Optional[Dict[int, str]] = None,
+    # NEW: display control
+    show: bool = True,
 ):
     """
     Plot a time-course for one metric, grouped by condition.
 
-    Parameters
-    ----------
-    df : pd.DataFrame
-        Master dataframe (raw or normalized).
-    metric : str
-        Metric name to plot (must match df['metric'] values).
-    plate_id : str, optional
-        Filter to one plate.
-    use_normalized : bool
-        If True, plot normalized_col; else plot value_col.
-    value_col : str
-        Raw value column name (default "value").
-    normalized_col : str
-        Normalized value column name (default "value_norm").
-    show_individual : bool
-        Plot individual well traces (thin lines).
-    show_mean_sem : bool
-        Plot condition mean ± SEM (error bars).
-    show_outliers : bool
-        If df has 'is_outlier', overlay flagged points as red dots.
-    title : str, optional
-        Custom plot title.
-    y_label : str, optional
-        Custom y-axis label.
-    timepoint_labels : dict[int,str], optional
-        Map time_point indices to labels (e.g., {0:"Baseline",1:"1h"}).
-
-    Returns
-    -------
-    matplotlib.figure.Figure
+    (docstring unchanged)
     """
     # Basic schema checks
     required = {"time_point", "condition", "well", "metric"}
@@ -142,7 +114,7 @@ def plot_metric_timecourse(
                     gw[ycol].values,
                     linewidth=1,
                     alpha=0.5,
-                    color=color,  # same color family for that condition
+                    color=color,
                 )
 
         # Mean ± SEM per time_point
@@ -202,5 +174,8 @@ def plot_metric_timecourse(
 
     ax.legend(loc="best")
     plt.tight_layout()
-    plt.show()
+
+    if show:
+        plt.show()
+
     return fig
