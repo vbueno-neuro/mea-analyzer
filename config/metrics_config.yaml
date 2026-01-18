@@ -15,7 +15,7 @@ metrics:
   rate_metrics:
     - "Weighted Mean Firing Rate (Hz)"
     - "Burst Frequency - Avg (Hz)"
-    - "Network Burst Frequency - Avg (Hz)"
+    - "Network Burst Frequency"
   
   # INTERVAL/DURATION METRICS: Missing values = NaN
   # These represent time measurements (only exist when events occur)
