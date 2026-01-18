@@ -3,7 +3,7 @@
 This guide explains how to go from Axion MEA Neural Metrics CSV files to clean tables, figures, and statistics, even if you have little or no programming experience.
 
 You do not need to modify source code.
-All user interaction happens through configuration files and the main notebook. [Main analysis notebook](notebooks/mea_analyzer_v1.ipynb)
+All user interaction happens through configuration files and the main notebook. [Main analysis notebook](../notebooks/mea_analyzer_v1.ipynb)
 
 ### 1. Software to install:
 
@@ -20,7 +20,8 @@ Git (recommended)
 JupyterLab (installed automatically via the environment)
 
 ### 2. Download the project
-Option A — Using Git bash (recommended)
+
+Option A — Using Git bash (recommended):
 ```text
 git clone https://github.com/vbueno-neuro/mea-analyzer.git
 cd mea-analyzer
@@ -30,13 +31,13 @@ Option B — Manual download
 
 - Click Code → Download ZIP on GitHub
 
-- mExtract the archive
-
-- Open the extracted mea_project/ folder
+- Extract the archive to a handy place
 
 ### 3. Set up the Python environment
 
-From the project root folder (mea_project/):
+Start Anconda Prompt and navigate to the root folder (mea-analyzer)
+
+From the project root folder run:
 ```text
 conda env create -f environment.yaml
 conda activate mea
@@ -46,6 +47,7 @@ Start JupyterLab (Anaconda Prompt):
 ```text
 jupyter lab
 ```
+
 ### 4. Where to put your data
 
 Copy all Axion Neural Metrics CSV files into:
@@ -93,7 +95,12 @@ This creates a file such as:
 config/Plate_MY_EXPERIMENT.yaml
 ```
 
-### 6. Open the main analysis notebook
+### 6. Open the main analysis notebook in Jupyter
+
+Anconda Prompt:
+```
+Jupyter lab # or Jupyter notebook
+```
 
 Open:
 ```text
@@ -164,19 +171,15 @@ Includes:
 
 📁 Tables
 
-Saved to:
+Analysis and complete data frames saved to:
 ```
 outputs/
-data/processed/
 ```
 
-Includes:
-
-- Long-format master tables
-
-- Per-metric wide tables (GraphPad Prism–ready)
-
-- Raw and normalized versions
+Prism-friendly tables save to:
+```
+/data/processed # Organized raw and normalized data in clean tables, one CSV per metric
+```
 
 ### 10. Common issues & solutions
 
@@ -206,7 +209,7 @@ This is expected if:
 
 ### 11. Scientific assumptions (important)
 
-- Experimental unit = MEA plate
+- Experimental unit = MEA plate (neuronal preparation)
 
 - Wells are technical replicates
 

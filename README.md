@@ -73,16 +73,6 @@ mea_project/
 └── README.md                       # Project overview & usage
 ```
 
-## ⚙️ Environment setup
-
-1. Create the conda environment (Anconda Prompt).
-  ```  
-  conda env create -f environment.yaml
-  conda activate mea
-  ```
-
-2. Open jupyter lab from the project root directory
-
 ## 📊 Supported metrics
 
 The pipeline currently supports the following Axion metrics:
