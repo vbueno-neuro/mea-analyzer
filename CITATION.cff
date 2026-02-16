@@ -1,0 +1,24 @@
+cff-version: 1.2.0
+title: "mea-analyzer: A Python toolkit for MEA data analysis"
+message: "If you use this software, please cite it using the metadata from this file."
+type: software
+authors:
+  - given-names: Vitor
+    family-names: Bueno
+    # orcid: "https://orcid.org/0009-0003-9571-1656"
+repository-code: "https://github.com/vbueno-neuro/mea-analyzer"
+license: MIT
+version: "1.0.0"
+date-released: "2025-02-16"
+# doi: "10.5281/zenodo.XXXXXXX"  # Uncomment and fill after Zenodo deposit
+keywords:
+  - microelectrode array
+  - MEA
+  - electrophysiology
+  - neuroscience
+  - data analysis
+abstract: >-
+  A Python toolkit for analyzing microelectrode array (MEA) data exported
+  from Axion BioSystems NeuralMetrics software. Provides a structured pipeline
+  for data loading, quality control, baseline normalization, statistical testing,
+  and visualization of MEA recordings.
