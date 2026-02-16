@@ -30,3 +30,17 @@ outputs/*
 # Figures
 figures/*
 !figures/.gitkeep
+
+# Packaging / Build artifacts
+*.egg-info/
+dist/
+build/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Editor / IDE
+.vscode/
+.idea/

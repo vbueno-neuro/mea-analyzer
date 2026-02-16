@@ -4,7 +4,6 @@ Reads and manages YAML configuration files
 """
 
 import yaml
-import os
 import numpy as np
 from pathlib import Path
 
