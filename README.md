@@ -188,8 +188,10 @@ The notebook guides you through:
 
 ## 📜 License & authorship
 
-For academic research use, DOI: 10.5281/zenodo.18662730
+For academic research use
 
 Author: Vitor Bueno
 
 Contributions: ChatGPT & Claude
+
+DOI: https://doi.org/10.5281/zenodo.18662729
