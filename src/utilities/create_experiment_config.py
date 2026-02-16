@@ -21,7 +21,7 @@ COLS = range(1, 7)
 VALID_WELLS = {f"{r}{c}" for r in ROWS for c in COLS}
 
 # -------------------------
-# Paths (assumes script is in: <project_root>/src/utils/)
+# Paths (assumes script is in: <project_root>/src/utilities/)
 # If your script is elsewhere, adjust parents[...] accordingly.
 # -------------------------
 PROJECT_ROOT = Path(__file__).resolve().parents[2]

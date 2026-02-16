@@ -17,7 +17,7 @@ During installation, allow Conda to be added to PATH if prompted
 Git (recommended)
 👉 https://git-scm.com/downloads
 
-JupyterLab (installed automatically via the environment)
+Jupyter Lab (installed automatically via the environment)
 
 ### 2. Download the project
 
@@ -35,7 +35,7 @@ Option B — Manual download
 
 ### 3. Set up the Python environment
 
-Start Anconda Prompt and navigate to the root folder (mea-analyzer)
+Start Anaconda Prompt and navigate to the root folder (mea-analyzer)
 
 From the project root folder run:
 ```text
@@ -43,7 +43,7 @@ conda env create -f environment.yaml
 conda activate mea
 ```
 
-Start JupyterLab (Anaconda Prompt):
+Start Jupyter Lab (Anaconda Prompt):
 ```text
 jupyter lab
 ```
@@ -97,9 +97,9 @@ config/Plate_MY_EXPERIMENT.yaml
 
 ### 6. Open the main analysis notebook in Jupyter
 
-Anconda Prompt:
+Anaconda Prompt:
 ```
-Jupyter lab # or Jupyter notebook
+jupyter lab # or jupyter notebook
 ```
 
 Open:
@@ -121,7 +121,7 @@ CONFIG_PATH = "config/Plate_MY_EXPERIMENT.yaml"
 
 ### 7.2 Outlier detection settings
 ```
-OUTLIER_METHOD = "zscore"   # zscore | iqr | mad
+OUTLIER_METHOD = "zscore"   # zscore | robust_zscore | 
 OUTLIER_Z = 3.0
 ```
 

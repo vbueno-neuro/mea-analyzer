@@ -30,47 +30,47 @@ This project provides tools to:
 ```text
 mea_project/
 │
-├── config/                         # Experiment & metrics configuration
-│   ├── metrics_config.yaml         # Metric categories, types, missing-value rules
-│   └── Plate_*.yaml                # Plate layout & condition assignment (user-defined)
+├── config/                              # Experiment & metrics configuration
+│   ├── metrics_config.yaml              # Metric categories, types, missing-value rules
+│   └── Plate_*.yaml                     # Plate layout & condition assignment (user-defined)
 │
 ├── data/
-│   ├── raw/                        # Raw Axion CSVs (NOT tracked by git)
-│   └── processed/                  # Optional exported / intermediate tables
+│   ├── raw/                             # Raw Axion CSVs (NOT tracked by git)
+│   └── processed/                       # Optional exported / intermediate tables
 │
 ├── notebooks/
-│   └── mea_analyzer_v1.ipynb       # Main analysis notebook (entry point)
+│   └── mea_analyzer_v1.ipynb            # Main analysis notebook (entry point)
 │
-├── outputs/                        # Exported tables (stats, long-format data)
-├── figures/                        # Saved figures (timecourses, layouts)
+├── outputs/                             # Exported tables (stats, long-format data)
+├── figures/                             # Saved figures (timecourses, layouts)
 │
-├── src/                            # Core analysis library
-│   ├── data_loader.py              # Axion CSV parsing (Well Averages block)
-│   ├── data_organizer.py           # Master dataframe creation & cleaning
-│   ├── config_handler.py           # Metrics configuration logic
+├── src/                                 # Core analysis library
+│   ├── data_loader.py                   # Axion CSV parsing (Well Averages block)
+│   ├── data_organizer.py                # Master dataframe creation & cleaning
+│   ├── config_handler.py                # Metrics configuration logic
 │   │
-│   ├── utilities/                  # User-facing helper scripts
-│   │   └── create_plate_config.py  # Interactive helper to generate Plate_*.yaml
+│   ├── utilities/                       # User-facing helper scripts
+│   │   └── create_experiment_config.py  # Interactive helper to generate Plate_*.yaml
 │   │
 │   ├── qc/
-│   │   └── outliers.py             # Outlier detection & flagging
+│   │   └── outliers.py                  # Outlier detection & flagging
 │   │
 │   ├── analysis/
-│   │   └── normalization.py        # Baseline normalization logic
+│   │   └── normalization.py             # Baseline normalization logic
 │   │
 │   ├── statistics/
-│   │   └── timepoint_tests.py      # Condition comparisons at single time points
+│   │   └── timepoint_tests.py           # Condition comparisons at single time points
 │   │
 │   ├── visualization/
-│   │   ├── plot_plate_layout.py    # Plate layout visualization
-│   │   └── timecourse.py           # Metric time-course plotting utilities
+│   │   ├── plot_plate_layout.py         # Plate layout visualization
+│   │   └── timecourse.py                # Metric time-course plotting utilities
 │   │
 │   └── io/
-│       └── table_export.py         # Export to Prism / CSV formats
+│       └── table_export.py              # Export to Prism / CSV formats
 │
-├── environment.yaml                # Conda environment specification
-├── .gitignore                      # Excludes raw data, outputs, figures
-└── README.md                       # Project overview & usage
+├── environment.yaml                     # Conda environment specification
+├── .gitignore                           # Excludes raw data, outputs, figures
+└── README.md                            # Project overview & usage
 ```
 
 ## 📊 Supported metrics
@@ -105,11 +105,12 @@ config/metrics_config.yaml.
 
 ## 📓 Main workflow (Notebook)
 
-- All analysis is performed in:
+All analysis is performed in:
+```
+notebooks/mea_analyzer_v1.ipynb
+```
 
-- notebooks/mea_analyzer_v1.ipynb
-
-- The notebook guides you through:
+The notebook guides you through:
 
 - Project setup & root detection
 
@@ -129,7 +130,7 @@ config/metrics_config.yaml.
 
 - Export of tables and figures
 
-### 👉 Users do not need to modify source code — only the notebook and config files.
+** 👉 Users do not need to modify source code — only the notebook and config files.**
 
 ## 🧾 Exported outputs
 
@@ -187,10 +188,8 @@ config/metrics_config.yaml.
 
 ## 📜 License & authorship
 
-This was developed as a project for the "Scientific Programming" course lectured by Dr. Renato Duarte (CNC - University of Coimbra)
-
 For academic research use
 
 Author: Vitor Bueno
 
-Contributions: ChatGPT, Claude
+Contributions: ChatGPT & Claude

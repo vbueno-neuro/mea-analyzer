@@ -1,10 +1,8 @@
 import csv
 import pandas as pd
 from pathlib import Path
-from io import StringIO
 
 WELL_IDS = [f"{r}{c}" for r in "ABCD" for c in range(1, 7)]
-
 
 def load_mea_csv_well_averages(csv_path, verbose=True, return_long=True):
     """
