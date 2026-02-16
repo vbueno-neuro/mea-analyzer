@@ -10,7 +10,7 @@ repository-code: "https://github.com/vbueno-neuro/mea-analyzer"
 license: MIT
 version: "1.0.0"
 date-released: "2025-02-16"
-# doi: "10.5281/zenodo.XXXXXXX"  # Uncomment and fill after Zenodo deposit
+# doi: "10.5281/zenodo.18662730"
 keywords:
   - microelectrode array
   - MEA

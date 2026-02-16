@@ -188,7 +188,7 @@ The notebook guides you through:
 
 ## 📜 License & authorship
 
-For academic research use
+For academic research use, DOI: 10.5281/zenodo.18662730
 
 Author: Vitor Bueno
 
